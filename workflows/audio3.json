@@ -1,0 +1,30 @@
+{
+    "1": {
+      "inputs": {
+        "text": "This is sample audio",
+        "voice": "Default (American Female) - af",
+        "language": "en-us",
+        "speed": 1,
+        "autoplay": false,
+        "save_audio": true,
+        "overwrite": false,
+        "seed": 0
+      },
+      "class_type": "Bjornulf_KokoroTTS",
+      "_meta": {
+        "title": "📝➜🔊 Kokoro - Text to Speech"
+      }
+    },
+    "2": {
+      "inputs": {
+        "audio": [
+          "1",
+          0
+        ]
+      },
+      "class_type": "PreviewAudio",
+      "_meta": {
+        "title": "PreviewAudio"
+      }
+    }
+}
