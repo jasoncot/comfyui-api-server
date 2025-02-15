@@ -1,0 +1,31 @@
+{
+    "1": {
+      "inputs": {
+        "filename_prefix": "audio/ComfyUI",
+        "audio": [
+          "17",
+          0
+        ]
+      },
+      "class_type": "SaveAudio",
+      "_meta": {
+        "title": "SaveAudio"
+      }
+    },
+    "2": {
+      "inputs": {
+        "text": "Well, well, well ... isn't, _THIS_, interesting?",
+        "voice": "Adam (American Male) - am_adam",
+        "language": "en-us",
+        "speed": 1,
+        "autoplay": true,
+        "save_audio": false,
+        "overwrite": false,
+        "seed": 186
+      },
+      "class_type": "Bjornulf_KokoroTTS",
+      "_meta": {
+        "title": "📝➜🔊 Kokoro - Text to Speech"
+      }
+    }
+  }
