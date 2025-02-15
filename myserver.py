@@ -1,6 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 from src.speechrequest import SpeechRequest
+from src.voicerequest import VoiceRequest
 from urllib import error
 
 class MyServer(BaseHTTPRequestHandler):
@@ -14,6 +15,8 @@ class MyServer(BaseHTTPRequestHandler):
         path = self.path
         if path == "/v1/audio/speech":
             self.do_speech_action()
+        elif path == "/v1/audio/voices":
+            self.do_voices_action()
         else:
             # it's a 404
             self.do_404_action()
@@ -43,6 +46,31 @@ class MyServer(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(bytes(result))
         return
+
+    def write_error(self, code, message):
+        self.send_response(code)
+        self.send_header("Content-Type", "text/plain")
+        self.end_headers()
+        self.wfile.write(message.encode(encoding="utf_8"))
+        
+        return
+
+    def write_json(self, code, payload):
+        self.send_response(code)
+        self.send_header("Content-Type", "application/json")
+        self.end_headers()
+        self.wfile.write(json.dumps(payload).encode(encoding='utf-8'))
+        return
+
+    def do_voices_action(self):
+        req = VoiceRequest("audio3.json")
+        resp, err = req.execute()
+
+        if err is not None:
+            return self.write_error(500, err)
+        
+        return self.write_json(200, resp)
+
 
     def do_speech_action(self):
         if self.command == "GET":
