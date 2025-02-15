@@ -18,10 +18,10 @@ class MyServer(BaseHTTPRequestHandler):
             # it's a 404
             self.do_404_action()
 
-    def get_audio_for_prompt(self, voice, prompt_text):
-        speech = SpeechRequest("am_adam")
+    def get_audio_for_prompt(self, voice="am_adam", prompt_text="Your request was not properly formed.  Check the API and try again."):
+        speech = SpeechRequest(voice)
         result = None
-        result, err = speech.request_audio_for("Your request was not properly formed.  Check the API and try again.")
+        result, err = speech.request_audio_for(prompt_text)
 
         if err is not None:
             self.send_response(500)
